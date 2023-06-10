@@ -12,6 +12,8 @@ namespace PlatformaBlogowa.Models
         public string Description { get; set; }
         [Required]
         public DateTime Created { get; set; }
+        [Required]
+        public string Ip { get; set; }
         [ForeignKey("PostId")]
         public int PostId { get; set; }
     }

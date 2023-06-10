@@ -1,0 +1,25 @@
+﻿@page "{PostId}, {CommentId}"
+@model PlatformaBlogowa.Pages.DeleteCommentModel
+@{
+	<form method="post">
+		<input asp-for="@Model.Comment.Id" class="form-control" hidden/>
+		<input asp-for="@Model.Comment.PostId" class="form-control" hidden />
+		<div class="form-group">
+			<label asp-for="@Model.Comment.Description" class="control-label"></label>
+			<input asp-for="@Model.Comment.Description" class="form-control" readonly />
+			<span asp-validation-for="@Model.Comment.Description" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="@Model.Comment.Created" class="control-label"></label>
+			<input asp-for="@Model.Comment.Created" class="form-control" readonly />
+			<span asp-validation-for="@Model.Comment.Created" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="@Model.Comment.Ip" class="control-label"></label>
+			<input asp-for="@Model.Comment.Ip" class="form-control" readonly />
+			<span asp-validation-for="@Model.Comment.Ip" class="text-danger"></span>
+		</div>
+		<input asp-page-handler="Return" type="submit" value="Go back" class="btn btn-primary" />
+		<input asp-page-handler="DeleteComment" type="submit" value="Delete" class="btn btn-primary" />
+	</form>
+}

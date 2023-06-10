@@ -15,6 +15,9 @@
 		@foreach(var comment in Model.PostVM.Comments)
 		{
 			<p>@comment.Description</p>
+			<p>@comment.Created</p>
+			<p>@comment.Ip</p>
+			<a asp-page="./DeleteComment" asp-route-PostId="@comment.PostId" asp-route-CommentId="@comment.Id">Delete</a>
 	}
 	</form>
 }
