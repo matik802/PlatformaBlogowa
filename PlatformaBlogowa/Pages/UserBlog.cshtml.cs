@@ -12,9 +12,9 @@ namespace PlatformaBlogowa.Pages
 			_postService = postService;
 		}
 		public string UserName { get; set; }
-		public void OnGet(string UserName)
+		public void OnGet()
         {
-			UserName = UserName;
+			UserName = (string)RouteData.Values["UserName"];
         }
     }
 }

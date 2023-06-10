@@ -24,5 +24,9 @@ namespace PlatformaBlogowa.Pages
 			_postService.UpdateTag(Tag);
 			return RedirectToPage("./EditPost", new { PostId = Tag.PostId });
 		}
-    }
+		public IActionResult OnPostReturn()
+		{
+			return RedirectToPage("./AddTag", new { PostId = Tag.PostId });
+		}
+	}
 }

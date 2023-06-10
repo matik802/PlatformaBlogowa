@@ -4,6 +4,12 @@
 	<form method="post">
 		<input asp-for="PostVM.Post.Id" class="form-control" hidden />
 		<h1>@Model.PostVM.Post.Title</h1>
+		<div class="form-group">
+            @foreach (var picture in Model.PostVM.Pictures)
+            {
+                <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px"/>
+            }
+        </div>
 		<h3>@Model.PostVM.Post.Description</h3>
 		<p>TAGS:</p>
 		@foreach (var tag in Model.PostVM.Tags)

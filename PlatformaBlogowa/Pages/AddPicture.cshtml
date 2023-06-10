@@ -1,0 +1,48 @@
+﻿@page "{PostId}"
+@model PlatformaBlogowa.Pages.AddPictureModel
+@{
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="@Model.PostVM.Post.Title" class="control-label"></label>
+            <input asp-for="@Model.PostVM.Post.Title" class="form-control" readonly/>
+            <span asp-validation-for="@Model.PostVM.Post.Title" class="text-danger"></span>
+        </div>
+        @foreach (var picture in Model.PostVM.Pictures)
+        {
+            <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px"/>
+            <a asp-page="./EditPicture" asp-route-PostId="@picture.PostId" asp-route-PictureId="@picture.Id">Edit</a>
+            <a asp-page="./DeletePicture" asp-route-PostId="@picture.PostId" asp-route-PictureId="@picture.Id">Delete</a>
+        }
+        <div class="form-group">
+            <label asp-for="@Model.PostVM.Post.Description" class="control-label"></label>
+            <input asp-for="@Model.PostVM.Post.Description" class="form-control" readonly />
+            <span asp-validation-for="@Model.PostVM.Post.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.PostVM.Post.Created" class="control-label"></label>
+            <input asp-for="@Model.PostVM.Post.Created" class="form-control" readonly />
+            <span asp-validation-for="@Model.PostVM.Post.Created" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <p>Tags:</p>
+        @foreach (var tag in Model.PostVM.Tags)
+        {
+            <p>@tag.Name</p>
+        }
+        </div>
+        <div class="form-group">
+            <label asp-for="Picture.ImageFile" class="control-label"></label>
+            <input asp-for="Picture.ImageFile" class="form-control" />
+            <span asp-validation-for="Picture.ImageFile" class="text-danger"></span>
+        </div>
+        <input asp-page-handler="AddPost" type="submit" value="Save" class="btn btn-primary" /> <br/>
+    </form>
+    <form method="post">
+        <input asp-page-handler="Return" type="submit" value="Go back" class="btn btn-primary" /> <input asp-page-handler="Home" type="submit" value="Return to homepage" class="btn btn-primary" />
+    </form>
+}
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

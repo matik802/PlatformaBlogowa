@@ -1,0 +1,17 @@
+﻿@page "{PostId}, {PictureId}"
+@model PlatformaBlogowa.Pages.EditPictureModel
+@{
+	<form method="post" enctype="multipart/form-data">
+		<input asp-for="@Model.Picture.Id" class="form-control" hidden/>
+		<input asp-for="@Model.Picture.PostId" class="form-control" hidden />
+		<input asp-for="@Model.Picture.ImageData" class="form-control" hidden />
+		<img src="data:image/jpg;base64,@Model.Picture.ImageData" width="120px" height="120px" />
+		<div class="form-group">
+			<label asp-for="Picture.ImageFile" class="control-label"></label>
+			<input asp-for="Picture.ImageFile" class="form-control" />
+			<span asp-validation-for="Picture.ImageFile" class="text-danger"></span>
+		</div>
+		<input asp-page-handler="Return" type="submit" value="Go back" class="btn btn-primary" />
+		<input asp-page-handler="EditPicture" type="submit" value="Save" class="btn btn-primary" />
+	</form>
+}

@@ -11,17 +11,24 @@
             <span asp-validation-for="PostVM.Post.Title" class="text-danger"></span>
         </div>
         <div class="form-group">
+            @foreach (var picture in Model.PostVM.Pictures)
+            {
+                <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px"/>
+            }
+        </div>
+        <div class="form-group">
             <label asp-for="PostVM.Post.Description" class="control-label"></label>
             <input asp-for="PostVM.Post.Description" class="form-control" readonly />
             <span asp-validation-for="PostVM.Post.Description" class="text-danger"></span>
         </div>
         <div class="form-group">
+        <p>Tags:</p>
         @foreach(var tag in Model.PostVM.Tags)
         {
             <p>@tag.Name</p>
         }
         </div>
-        <input asp-page-handler="DeletePost" type="submit" value="Delete" class="btn btn-primary" />
+        <input asp-page-handler="DeletePost" type="submit" value="Delete" class="btn btn-primary" /> <br/>
         <input asp-page-handler="Home" type="submit" value="Return to Homepage" class="btn btn-primary" />
 	</form>
 }

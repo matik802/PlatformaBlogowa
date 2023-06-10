@@ -21,14 +21,14 @@
             <label asp-for="Tag.Name" class="control-label"></label>
             <input asp-for="Tag.Name" class="form-control" />
             <span asp-validation-for="Tag.Name" class="text-danger"></span>
-			<input asp-page-handler="AddTag" type="submit" value="Add tag" class="btn btn-primary" />
+			<input asp-page-handler="AddTag" type="submit" value="Save" class="btn btn-primary" />
 			
         </div>
 	</form>
     <form method="post">
         <input asp-for="Post.Id" class="form-control" hidden/>
         <input asp-page-handler="Return" type="submit" value="Go back" class="btn btn-primary" /> 
-        <input asp-page-handler="Done" type="submit" value="Return to homepage" class="btn btn-primary" />
+        <input asp-page-handler="AddPicture" type="submit" value="Next" class="btn btn-primary" />
     </form>
 }
 @section Scripts{

@@ -31,9 +31,9 @@ namespace PlatformaBlogowa.Pages
             }
             return RedirectToPage("./AddTag",new { PostId = Post.Id });
 		}
-		public IActionResult OnPostDone()
+		public IActionResult OnPostAddPicture()
 		{
-			return RedirectToPage("./Index");
+			return RedirectToPage("./AddPicture", new { PostId = Post.Id });
 		}
 		public IActionResult OnPostReturn()
 		{

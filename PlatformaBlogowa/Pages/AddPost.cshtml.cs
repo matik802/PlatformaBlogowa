@@ -30,5 +30,9 @@ namespace PlatformaBlogowa.Pages
             }
             return Page();
         }
-    }
+		public IActionResult OnPostHome()
+		{
+			return RedirectToPage("./Index");
+		}
+	}
 }

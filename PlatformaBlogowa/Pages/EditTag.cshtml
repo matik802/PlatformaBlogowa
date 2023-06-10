@@ -7,6 +7,7 @@
 		<label asp-for="@Model.Tag.Name" class="control-label"></label>
 		<input asp-for="@Model.Tag.Name" class="form-control" />
 		<span asp-validation-for="@Model.Tag.Name" class="text-danger"></span>
+		<input asp-page-handler="Return" type="submit" value="Go back" class="btn btn-primary" />
 		<input asp-page-handler="EditTag" type="submit" value="Save" class="btn btn-primary" />
 	</form>
 }
