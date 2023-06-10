@@ -5,6 +5,28 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @if (TempData["UserId"] != null)
+    {
+        <a asp-page="./AddPost">Add Post</a>
+    }
+    <form method="post">
+        @for (int i = 0; i < 10; i++)
+        {
+            if ((string)TempData["UserId"] == @Model.PostVM[i].Post.UserId)
+            {
+                <a asp-page="./EditPost" asp-route-PostId="@Model.PostVM[i].Post.Id">Edit</a>
+                <a asp-page="./DeletePost" asp-route-PostId="@Model.PostVM[i].Post.Id">Delete</a>
+            }
+            <p>@Model.PostVM[i].Post.Title</p>
+            <p>@Model.PostVM[i].Post.Description</p>
+            <p>@Model.PostVM[i].Post.Created</p>
+            <p>TAGS:</p>
+            foreach (var tag in Model.PostVM[i].Tags)
+            {
+                <p>@tag.Name</p>
+            }
+            <a asp-page="./Comments" asp-route-PostId="@Model.PostVM[i].Post.Id">Comments</a>
+            <p>-------------------</p>
+        }
+    </form>
 </div>

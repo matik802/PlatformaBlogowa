@@ -1,0 +1,13 @@
+﻿@page "{PostId}, {TagId}"
+@model PlatformaBlogowa.Pages.DeleteTagModel
+@{
+	<form method="post">
+		<input asp-for="@Model.Tag.Id" class="form-control" hidden/>
+		<input asp-for="@Model.Tag.PostId" class="form-control" hidden />
+		<label asp-for="@Model.Tag.Name" class="control-label"></label>
+		<input asp-for="@Model.Tag.Name" class="form-control" readonly />
+		<span asp-validation-for="@Model.Tag.Name" class="text-danger"></span>
+		<input asp-page-handler="Return" type="submit" value="Go back" class="btn btn-primary" /> 
+		<input asp-page-handler="DeleteTag" type="submit" value="Delete" class="btn btn-primary" />
+	</form>
+}

@@ -1,4 +1,5 @@
-﻿using PlatformaBlogowa.Models;
+﻿using ContosoUniversity;
+using PlatformaBlogowa.Models;
 using PlatformaBlogowa.Services.Repositories;
 using PlatformaBlogowa.ViewModels;
 
@@ -37,6 +38,7 @@ namespace PlatformaBlogowa.Services
         public ListPostWithExtrasVM GetAllPosts(string? UserId = null)
         {
             var postsFull = new ListPostWithExtrasVM();
+            postsFull.PostsList = new List<PostWithExtrasVM>();
             var  posts = _postRepository.GetAllPosts(UserId);
             foreach (var var in posts) 
             {

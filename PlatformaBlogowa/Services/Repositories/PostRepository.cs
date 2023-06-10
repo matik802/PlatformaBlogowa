@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using ContosoUniversity;
 using PlatformaBlogowa.Data;
 using PlatformaBlogowa.Models;
+using PlatformaBlogowa.ViewModels;
 
 namespace PlatformaBlogowa.Services.Repositories
 {
@@ -99,7 +100,7 @@ namespace PlatformaBlogowa.Services.Repositories
         {
             if (UserId != null)
                 return _applicationDbContext.Posts.Where(u => u.UserId == UserId).ToList();
-            return _applicationDbContext.Posts.ToList();
+            return _applicationDbContext.Posts.OrderByDescending(u => u.Created).ToList();
         }
         public List<Comment> GetAllComments(int? PostId)
         {
@@ -118,16 +119,6 @@ namespace PlatformaBlogowa.Services.Repositories
             if (PostId != null)
                 return _applicationDbContext.Pictures.Where(u => u.PostId == PostId).ToList();
             return _applicationDbContext.Pictures.ToList();
-        }
-
-        public async void DoPaging(int? pageIndex)
-        {
-            IQueryable<Post> FormIQ = from s in _applicationDbContext.Posts
-                                      select s;
-            FormIQ = FormIQ.OrderByDescending(s => s.Created);
-            var pageSize = _configuration.GetValue("PageSize", 4);
-            var Post = await PaginatedList<Post>.CreateAsync(
-                FormIQ, pageIndex ?? 1, pageSize);
         }
     }
 }

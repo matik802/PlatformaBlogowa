@@ -1,0 +1,33 @@
+﻿@page "{PostId}"
+@model PlatformaBlogowa.Pages.EditPostModel
+@{
+	<form method="post">
+        <input asp-for="PostVM.Post.Id" class="form-control" hidden/>
+        <input asp-for="PostVM.Post.UserId" class="form-control" hidden/>
+        <input asp-for="PostVM.Post.Created" class="form-control" hidden />
+        <div class="form-group">
+            <label asp-for="PostVM.Post.Title" class="control-label"></label>
+            <input asp-for="PostVM.Post.Title" class="form-control" />
+            <span asp-validation-for="PostVM.Post.Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PostVM.Post.Description" class="control-label"></label>
+            <input asp-for="PostVM.Post.Description" class="form-control" />
+            <span asp-validation-for="PostVM.Post.Description" class="text-danger"></span>
+        </div>
+        <input asp-page-handler="EditPost" type="submit" value="Save" class="btn btn-primary" />
+        <div class="form-group">
+        @foreach(var tag in Model.PostVM.Tags)
+        {
+            <p>@tag.Name</p>
+        }
+        </div>
+        <input asp-page-handler="AddTags" type="submit" value="Manage tags" class="btn btn-primary" />  <br/>
+        <input asp-page-handler="Home" type="submit" value="Return to Homepage" class="btn btn-primary" />
+	</form>
+}
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

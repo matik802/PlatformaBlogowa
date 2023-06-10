@@ -1,4 +1,5 @@
-﻿using PlatformaBlogowa.Models;
+﻿using ContosoUniversity;
+using PlatformaBlogowa.Models;
 using PlatformaBlogowa.ViewModels;
 
 namespace PlatformaBlogowa.Services
@@ -18,7 +19,7 @@ namespace PlatformaBlogowa.Services
         public void UpdatePicture(Picture Picture);
         public void DeletePicture(Picture Picture);
         public PostWithExtrasVM GetPost(int PostId);
-        public ListPostWithExtrasVM GetAllPosts(string? UserId);
+        public ListPostWithExtrasVM GetAllPosts(string? UserId = null);
         /*
         public List<Comment> GetAllComments(int? PostId);
         public List<Tag> GetAllTags(int? PostId);

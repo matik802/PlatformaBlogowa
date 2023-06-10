@@ -1,4 +1,5 @@
-﻿using PlatformaBlogowa.Models;
+﻿using ContosoUniversity;
+using PlatformaBlogowa.Models;
 
 namespace PlatformaBlogowa.Services.Repositories
 {
@@ -12,6 +13,5 @@ namespace PlatformaBlogowa.Services.Repositories
         public List<Comment> GetAllComments(int? PostId);
         public List<Tag> GetAllTags(int? PostId);
         public List<Picture> GetAllPictures(int? PostId);
-        public void DoPaging(int? pageIndex);
     }
 }

@@ -1,0 +1,12 @@
+﻿@page "{PostId}, {TagId}"
+@model PlatformaBlogowa.Pages.EditTagModel
+@{
+	<form method="post">
+		<input asp-for="@Model.Tag.Id" class="form-control" hidden/>
+		<input asp-for="@Model.Tag.PostId" class="form-control" hidden />
+		<label asp-for="@Model.Tag.Name" class="control-label"></label>
+		<input asp-for="@Model.Tag.Name" class="form-control" />
+		<span asp-validation-for="@Model.Tag.Name" class="text-danger"></span>
+		<input asp-page-handler="EditTag" type="submit" value="Save" class="btn btn-primary" />
+	</form>
+}
