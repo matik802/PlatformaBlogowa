@@ -2,5 +2,47 @@
 @model PlatformaBlogowa.Pages.UserBlogModel
 @{
 	<h2>@RouteData.Values["UserName"] Blog</h2>
-	<h2>@Model.UserName Blog</h2>
 }
+<div class="text-center">
+    @foreach(var postVM in Model.PaginatedPostsVM.PostsList)
+    {
+        <div id="Main">
+        @if ((string)TempData["UserId"] == postVM.Post.UserId)
+        {
+            <a asp-page="./EditPost" asp-route-PostId="@postVM.Post.Id">Edit</a>
+            <a asp-page="./DeletePost" asp-route-PostId="@postVM.Post.Id">Delete</a>
+        }
+        <p>@postVM.Post.Title</p>
+        @foreach (var picture in postVM.Pictures)
+        {
+            <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px" />
+        }
+        <p>@postVM.Post.Description</p>
+        <p>@postVM.Post.Created</p>
+        <p>Tags:</p>
+        @foreach (var tag in postVM.Tags)
+        {
+            <p>@tag.Name</p>
+        }
+        <a asp-page="./Comments" asp-route-PostId="@postVM.Post.Id">Comments</a>
+        </div>
+    }
+    @{
+        var prevDisabled = !Model.PaginatedPosts.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.PaginatedPosts.HasNextPage ? "disabled" : "";
+    }
+    <form method="post">
+    <a 
+       asp-route-pageIndex="@(Model.PaginatedPosts.PageIndex - 1)"
+       asp-route-userN="@Model.UserName"
+       class="btn btn-primary @prevDisabled">
+        Previous
+    </a>
+    <a 
+       asp-route-pageIndex="@(Model.PaginatedPosts.PageIndex + 1)"
+       asp-route-userN="@Model.UserName"
+       class="btn btn-primary @nextDisabled">
+        Next
+    </a>
+    </form>
+</div>

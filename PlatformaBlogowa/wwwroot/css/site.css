@@ -16,3 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#Main {
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}

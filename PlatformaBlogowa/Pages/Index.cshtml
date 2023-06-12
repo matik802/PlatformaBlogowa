@@ -10,27 +10,29 @@
         <a asp-page="./AddPost">Add Post</a>
     }
     <form method="post">
+        
         @for (int i = 0; i < 10; i++)
         {
-            if ((string)TempData["UserId"] == @Model.PostVM[i].Post.UserId)
+            <div id="Main">
+            @if ((string)TempData["UserId"] == @Model.PostVM[i].Post.UserId)
             {
                 <a asp-page="./EditPost" asp-route-PostId="@Model.PostVM[i].Post.Id">Edit</a>
                 <a asp-page="./DeletePost" asp-route-PostId="@Model.PostVM[i].Post.Id">Delete</a>
             }
             <p>@Model.PostVM[i].Post.Title</p>
-            foreach (var picture in Model.PostVM[i].Pictures)
+            @foreach (var picture in Model.PostVM[i].Pictures)
             {
                 <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px"/>
             }
             <p>@Model.PostVM[i].Post.Description</p>
             <p>@Model.PostVM[i].Post.Created</p>
-            <p>TAGS:</p>
-            foreach (var tag in Model.PostVM[i].Tags)
+            <p>Tags:</p>
+            @foreach (var tag in Model.PostVM[i].Tags)
             {
                 <p>@tag.Name</p>
             }
             <a asp-page="./Comments" asp-route-PostId="@Model.PostVM[i].Post.Id">Comments</a>
-            <p>-------------------</p>
+            </div>
         }
     </form>
 </div>

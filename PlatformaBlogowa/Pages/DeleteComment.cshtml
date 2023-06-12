@@ -19,7 +19,9 @@
 			<input asp-for="@Model.Comment.Ip" class="form-control" readonly />
 			<span asp-validation-for="@Model.Comment.Ip" class="text-danger"></span>
 		</div>
-		<input asp-page-handler="Return" type="submit" value="Go back" class="btn btn-primary" />
 		<input asp-page-handler="DeleteComment" type="submit" value="Delete" class="btn btn-primary" />
+	</form>
+	<form method="post">
+		<input asp-page-handler="Return" type="submit" value="Go back" class="btn btn-primary" />
 	</form>
 }

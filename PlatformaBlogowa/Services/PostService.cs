@@ -37,8 +37,8 @@ namespace PlatformaBlogowa.Services
 
         public ListPostWithExtrasVM GetAllPosts(string? UserId = null)
         {
-            var postsFull = new ListPostWithExtrasVM();
-            postsFull.PostsList = new List<PostWithExtrasVM>();
+			ListPostWithExtrasVM PostsVMList = new ListPostWithExtrasVM();
+			PostsVMList.PostsList = new List<PostWithExtrasVM>();
             var  posts = _postRepository.GetAllPosts(UserId);
             foreach (var var in posts) 
             {
@@ -47,9 +47,9 @@ namespace PlatformaBlogowa.Services
                 post.Tags = _postRepository.GetAllTags(var.Id);
                 post.Comments = _postRepository.GetAllComments(var.Id);
                 post.Pictures = _postRepository.GetAllPictures(var.Id);
-                postsFull.PostsList.Add(post);
+				PostsVMList.PostsList.Add(post);
             }
-            return postsFull;
+            return PostsVMList;
         }
 
         public void AddTag(Tag Tag)

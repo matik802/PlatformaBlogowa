@@ -11,8 +11,11 @@
         <div class="form-group">
 
         </div>
-        <input asp-page-handler="AddComment" type="submit" value="Confirm" class="btn btn-primary" />
+        <input asp-page-handler="AddComment" type="submit" value="Save" class="btn btn-primary" />
 	</form>
+    <form method="post">
+        <input asp-page-handler="Return" type="submit" value="Go back" class="btn btn-primary" />
+    </form>
 }
 @section Scripts{
     @{

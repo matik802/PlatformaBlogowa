@@ -22,5 +22,10 @@ namespace PlatformaBlogowa.Services.Repositories
         {
             return _applicationDbContext.Users.ToList();
         }
+
+        public IdentityUser GetUserByUserName(string UserName)
+        {
+            return _applicationDbContext.Users.FirstOrDefault(u => u.UserName == UserName);
+        }
     }
 }

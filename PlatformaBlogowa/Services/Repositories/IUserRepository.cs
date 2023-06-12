@@ -6,5 +6,6 @@ namespace PlatformaBlogowa.Services.Repositories
     {
         public void Delete(string UserId);
         public List<IdentityUser> GetAllUsers();
+        public IdentityUser GetUserByUserName(string UserName);
     }
 }

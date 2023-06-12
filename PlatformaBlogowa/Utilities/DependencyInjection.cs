@@ -13,7 +13,9 @@ namespace PlatformaBlogowa.Utilities
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserRepository, UserRepository>();
-            return services;
+			services.AddTransient<IPaginatedListService, PaginatedListService>();
+			services.AddTransient<IPaginatedListRepository, PaginatedListRepository>();
+			return services;
         }
     }
 }
