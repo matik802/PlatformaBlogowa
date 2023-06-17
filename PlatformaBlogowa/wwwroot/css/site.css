@@ -17,8 +17,25 @@ body {
   margin-bottom: 60px;
 }
 
-#Main {
+#post {
     border-width: 2px;
     border-style: solid;
     border-color: black;
+    height: 20%;
+    width: 40%;
+    background-color: powderblue;
+    margin: auto;
+}
+
+#comment {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    height: 20%;
+    width: 30%;
+    background-color: #ABBAEA;
+}
+
+.inline {
+    display: inline-block;
 }

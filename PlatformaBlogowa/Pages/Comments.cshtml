@@ -1,7 +1,9 @@
 ﻿@page
+@using PlatformaBlogowa.Utilities;
 @model PlatformaBlogowa.Pages.CommentsModel
 @{
 	<form method="post">
+		<input asp-page-handler="Home" type="submit" value="Return to Homepage" class="btn btn-primary" />
 		<input asp-for="PostVM.Post.Id" class="form-control" hidden />
 		<h1>@Model.PostVM.Post.Title</h1>
 		<div class="form-group">
@@ -10,20 +12,27 @@
                 <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px"/>
             }
         </div>
-		<h3>@Model.PostVM.Post.Description</h3>
-		<p>TAGS:</p>
+		<p>@Model.PostVM.Post.Description</p>
+		<p class="inline" style="font-size:80%;">Tags:</p>
 		@foreach (var tag in Model.PostVM.Tags)
 		{
-			<p>@tag.Name</p>
+			<p class="inline" style="font-size:80%;">@tag.Name</p>
 		}
+		<br/>
+		<p style="font-size:50%;">@Model.PostVM.Post.Created</p>
 		<p>Comments:</p>
 		<input asp-page-handler="AddComment" type="submit" value="Add Comment" class="btn btn-primary" />
 		@foreach(var comment in Model.PostVM.Comments)
 		{
-			<p>@comment.Description</p>
-			<p>@comment.Created</p>
-			<p>@comment.Ip</p>
-			<a asp-page="./DeleteComment" asp-route-PostId="@comment.PostId" asp-route-CommentId="@comment.Id">Delete</a>
+			<div id="comment">
+				<p>@comment.Description</p>
+				<p style="font-size:50%;">@comment.Created</p>
+				<p style="font-size:50%;">@comment.Ip</p>
+				@if ((string)TempData["UserId"] == @Model.PostVM.Post.UserId|| (string)TempData["UserId"] == comment.UserId || User.IsInRole(Role.Admin))
+				{
+					<a asp-page="./DeleteComment" asp-route-PostId="@comment.PostId" asp-route-CommentId="@comment.Id">Delete</a>
+				}
+			</div>
 	}
 	</form>
 }

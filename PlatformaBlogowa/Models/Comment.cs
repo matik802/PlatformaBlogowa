@@ -16,5 +16,7 @@ namespace PlatformaBlogowa.Models
         public string Ip { get; set; }
         [ForeignKey("PostId")]
         public int PostId { get; set; }
-    }
+		[ForeignKey("UserId")]
+		public string UserId { get; set; }
+	}
 }

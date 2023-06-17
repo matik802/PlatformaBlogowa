@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PlatformaBlogowa.Models;
@@ -7,7 +8,8 @@ using PlatformaBlogowa.ViewModels;
 namespace PlatformaBlogowa.Pages
 {
 	[BindProperties]
-    public class EditPostModel : PageModel
+	[Authorize]
+	public class EditPostModel : PageModel
     {
 		public readonly IPostService _postService;
 		public EditPostModel(IPostService postService)

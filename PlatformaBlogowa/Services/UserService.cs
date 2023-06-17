@@ -24,5 +24,15 @@ namespace PlatformaBlogowa.Services
         {
             return _userRepository.GetUserByUserName(UserName);
         }
-    }
+
+        public IdentityUser GetUserById(string Id)
+        {
+            return _userRepository.GetUserById(Id);
+        }
+
+		public void UpdateUser(IdentityUser user)
+		{
+			_userRepository.UpdateUser(user);
+		}
+	}
 }

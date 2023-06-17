@@ -1,4 +1,6 @@
 using System.Net;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,6 +11,7 @@ using PlatformaBlogowa.Utilities;
 namespace PlatformaBlogowa.Pages
 {
 	[BindProperties]
+	[Authorize]
     public class AddCommentModel : PageModel
     {
 		public readonly IPostService _postService;
@@ -29,7 +32,8 @@ namespace PlatformaBlogowa.Pages
 		{
 			Comment.Ip = ClientIp.GetClientIp();
 			Comment.Created = DateTime.Now;
-            _postService.AddComment(Comment);
+			Comment.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			_postService.AddComment(Comment);
 			return RedirectToPage("./Comments", new { PostId = Comment.PostId });
 		}
 		public IActionResult OnPostReturn()

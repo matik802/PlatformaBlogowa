@@ -13,14 +13,12 @@ namespace PlatformaBlogowa.Pages
 	[BindProperties]
     public class UserBlogModel : PageModel
     {
-		public readonly ApplicationDbContext _context;
         public readonly IUserService _userService;
         public readonly IConfiguration _configuration;
 		public readonly IPaginatedListService _paginatedListService;
 
-		public UserBlogModel(ApplicationDbContext context, IUserService userService, IConfiguration configuration , IPaginatedListService paginatedListService)
+		public UserBlogModel(IUserService userService, IConfiguration configuration , IPaginatedListService paginatedListService)
 		{
-            _context = context;
 			_userService = userService;
             _configuration = configuration;
             _paginatedListService = paginatedListService;
@@ -35,14 +33,6 @@ namespace PlatformaBlogowa.Pages
             TempData["userId"] = userId;
             UserName = (string)RouteData.Values["UserName"];
 			var user = _userService.GetUserByUserName(UserName);
-			/*
-			var posts = _context.Posts.Where(u => u.UserId == user.Id);
-            IQueryable<Post> FormIQ = from s in posts
-                                      select s;
-            FormIQ = FormIQ.OrderByDescending(s => s.Created);
-            var pageSize = _configuration.GetValue("PageSize", 4);
-            PaginatedPosts = await PaginatedList<Post>.CreateAsync(
-                FormIQ, pageIndex ?? 1, pageSize);*/
 			PaginatedPosts = await _paginatedListService.DoPaging(pageIndex, UserName);
 			PaginatedPostsVM = await _paginatedListService.DoPagingVM(pageIndex, UserName);
 

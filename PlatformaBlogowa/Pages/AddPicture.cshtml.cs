@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -8,7 +9,8 @@ using PlatformaBlogowa.ViewModels;
 namespace PlatformaBlogowa.Pages
 {
 	[BindProperties]
-    public class AddPictureModel : PageModel
+	[Authorize]
+	public class AddPictureModel : PageModel
     {
 		public readonly IPostService _postService;
 		public AddPictureModel(IPostService postService)

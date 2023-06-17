@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PlatformaBlogowa.Models;
@@ -7,7 +8,8 @@ using PlatformaBlogowa.Services;
 namespace PlatformaBlogowa.Pages
 {
     [BindProperties]
-    public class AddPostModel : PageModel
+	[Authorize]
+	public class AddPostModel : PageModel
     {
         public readonly IPostService _postService;
         public AddPostModel(IPostService postService)

@@ -1,0 +1,20 @@
+﻿@page "{UserId}"
+@model PlatformaBlogowa.Pages.DeleteUserModel
+@{
+}
+<div>
+	<form method="post">
+		<div class="form-group">
+			<label asp-for="@Model.AppUser.Email" class="control-label"></label>
+			<input asp-for="@Model.AppUser.Email" class="form-control" readonly />
+			<span asp-validation-for="@Model.AppUser.Email" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="@Model.AppUser.UserName" class="control-label"></label>
+			<input asp-for="@Model.AppUser.UserName" class="form-control" readonly />
+			<span asp-validation-for="@Model.AppUser.UserName" class="text-danger"></span>
+		</div>
+		<input asp-page-handler="Return" type="submit" value="Go back" class="btn btn-primary" /> <br/>
+		<input asp-page-handler="" asp-route-UserId="@Model.AppUser.Id" type="submit" value="Delete" class="btn btn-primary" />
+	</form>
+</div>

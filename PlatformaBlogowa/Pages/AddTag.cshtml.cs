@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PlatformaBlogowa.Models;
@@ -6,7 +7,8 @@ using PlatformaBlogowa.Services;
 namespace PlatformaBlogowa.Pages
 {
 	[BindProperties]
-    public class AddTagModel : PageModel
+	[Authorize]
+	public class AddTagModel : PageModel
     {
 		public readonly IPostService _postService;
 		public AddTagModel(IPostService postService)

@@ -12,26 +12,27 @@
     <form method="post">
         
         @for (int i = 0; i < 10; i++)
-        {
-            <div id="Main">
-            @if ((string)TempData["UserId"] == @Model.PostVM[i].Post.UserId)
-            {
-                <a asp-page="./EditPost" asp-route-PostId="@Model.PostVM[i].Post.Id">Edit</a>
-                <a asp-page="./DeletePost" asp-route-PostId="@Model.PostVM[i].Post.Id">Delete</a>
-            }
-            <p>@Model.PostVM[i].Post.Title</p>
-            @foreach (var picture in Model.PostVM[i].Pictures)
-            {
-                <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px"/>
-            }
-            <p>@Model.PostVM[i].Post.Description</p>
-            <p>@Model.PostVM[i].Post.Created</p>
-            <p>Tags:</p>
-            @foreach (var tag in Model.PostVM[i].Tags)
-            {
-                <p>@tag.Name</p>
-            }
-            <a asp-page="./Comments" asp-route-PostId="@Model.PostVM[i].Post.Id">Comments</a>
+        {   
+            <div id="post">
+                @if ((string)TempData["UserId"] == @Model.PostVM[i].Post.UserId)
+                {
+                    <a asp-page="./EditPost" asp-route-PostId="@Model.PostVM[i].Post.Id">Edit</a>
+                    <a asp-page="./DeletePost" asp-route-PostId="@Model.PostVM[i].Post.Id">Delete</a>
+                }
+                <h2>@Model.PostVM[i].Post.Title</h2>
+                @foreach (var picture in Model.PostVM[i].Pictures)
+                {
+                    <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px"/>
+                }
+                <p>@Model.PostVM[i].Post.Description</p>
+                <p class="inline" style="font-size:80%;">Tags:</p>
+                @foreach (var tag in Model.PostVM[i].Tags)
+                {
+                    <p class="inline"style="font-size:80%;">@tag.Name</p>
+                }
+                <br/>
+                <p style="font-size:50%;">@Model.PostVM[i].Post.Created</p>
+                <a asp-page="./Comments" asp-route-PostId="@Model.PostVM[i].Post.Id">Comments</a>
             </div>
         }
     </form>

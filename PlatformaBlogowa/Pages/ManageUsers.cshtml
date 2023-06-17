@@ -1,0 +1,17 @@
+﻿@page
+@model PlatformaBlogowa.Pages.ManageUsersModel
+@{
+}
+<div>
+	@foreach(var user in Model.UsersList)
+	{
+		<div id="comment">
+			<p>Email: @user.Email</p>
+			<p>User Name: @user.UserName</p>
+			<a asp-page="/DeleteUser" asp-route-UserId="@user.Id">Delete</a>
+		</div>
+	}
+	<form method="post">
+		<input asp-page-handler="Home" type="submit" value="Return to Homepage" class="btn btn-primary" />
+	</form>
+</div>

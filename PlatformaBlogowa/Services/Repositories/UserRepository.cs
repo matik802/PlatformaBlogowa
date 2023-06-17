@@ -27,5 +27,16 @@ namespace PlatformaBlogowa.Services.Repositories
         {
             return _applicationDbContext.Users.FirstOrDefault(u => u.UserName == UserName);
         }
-    }
+
+        public IdentityUser GetUserById(string Id)
+        {
+            return _applicationDbContext.Users.FirstOrDefault(u => u.Id == Id);
+        }
+
+		public void UpdateUser(IdentityUser user)
+		{
+			_applicationDbContext.Users.Update(user);
+            _applicationDbContext.SaveChanges();
+		}
+	}
 }

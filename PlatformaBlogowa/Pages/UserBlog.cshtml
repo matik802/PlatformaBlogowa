@@ -1,30 +1,31 @@
 ﻿@page "{UserName}"
 @model PlatformaBlogowa.Pages.UserBlogModel
 @{
-	<h2>@RouteData.Values["UserName"] Blog</h2>
+	
 }
 <div class="text-center">
+    <h2>@RouteData.Values["UserName"] Blog</h2>
     @foreach(var postVM in Model.PaginatedPostsVM.PostsList)
     {
-        <div id="Main">
-        @if ((string)TempData["UserId"] == postVM.Post.UserId)
-        {
-            <a asp-page="./EditPost" asp-route-PostId="@postVM.Post.Id">Edit</a>
-            <a asp-page="./DeletePost" asp-route-PostId="@postVM.Post.Id">Delete</a>
-        }
-        <p>@postVM.Post.Title</p>
-        @foreach (var picture in postVM.Pictures)
-        {
-            <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px" />
-        }
-        <p>@postVM.Post.Description</p>
-        <p>@postVM.Post.Created</p>
-        <p>Tags:</p>
-        @foreach (var tag in postVM.Tags)
-        {
-            <p>@tag.Name</p>
-        }
-        <a asp-page="./Comments" asp-route-PostId="@postVM.Post.Id">Comments</a>
+        <div id="post">
+            @if ((string)TempData["UserId"] == postVM.Post.UserId)
+            {
+                <a asp-page="./EditPost" asp-route-PostId="@postVM.Post.Id">Edit</a>
+                <a asp-page="./DeletePost" asp-route-PostId="@postVM.Post.Id">Delete</a>
+            }
+            <h2>@postVM.Post.Title</h2>
+            @foreach (var picture in postVM.Pictures)
+            {
+                <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px" />
+            }
+            <p>@postVM.Post.Description</p>
+            <p class="inline" style="font-size:80%;">Tags:</p>
+            @foreach (var tag in postVM.Tags)
+            {
+                <p class="inline" style="font-size:80%;">@tag.Name</p>
+            }
+            <p style="font-size:50%;">@postVM.Post.Created</p>
+            <a asp-page="./Comments" asp-route-PostId="@postVM.Post.Id">Comments</a>
         </div>
     }
     @{
