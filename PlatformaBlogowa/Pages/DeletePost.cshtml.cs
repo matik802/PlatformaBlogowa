@@ -23,19 +23,20 @@ namespace PlatformaBlogowa.Pages
 		}
         public IActionResult OnPostDeletePost()
         {
-			foreach(var comment in PostVM.Comments)
+			var postVM = _postService.GetPost(PostVM.Post.Id);
+			foreach(var comment in postVM.Comments)
 			{
 				_postService.DeleteComment(comment);
 			}
-			foreach(var tag in PostVM.Tags)
+			foreach(var tag in postVM.Tags)
 			{
 				_postService.DeleteTag(tag);
 			}
-			foreach (var picture in PostVM.Pictures)
+			foreach (var picture in postVM.Pictures)
 			{
 				_postService.DeletePicture(picture);
 			}
-			_postService.DeletePost(PostVM.Post);
+			_postService.DeletePost(postVM.Post);
             return RedirectToPage("./Index");
         }
         public IActionResult OnPostHome()

@@ -38,7 +38,7 @@ namespace PlatformaBlogowa.Pages
 		}
 		public IActionResult OnPostReturn()
 		{
-            return RedirectToPage("./Comments", new { PostId = Comment.PostId });
+			return RedirectToPage("./Comments", new { PostId = Comment.PostId });
         }
     }
 }

@@ -35,7 +35,6 @@ namespace PlatformaBlogowa.Pages
                 }
             }
 			return Page();
-
 		}
 		public IActionResult OnPostDeleteComment()
 		{

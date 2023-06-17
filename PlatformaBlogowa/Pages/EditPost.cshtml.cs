@@ -24,8 +24,8 @@ namespace PlatformaBlogowa.Pages
         }
 		public IActionResult OnPostEditPost()
 		{
-			_postService.UpdatePost(PostVM.Post);
-			return RedirectToPage("./EditPost", new { PostId = PostVM.Post.Id });
+            _postService.UpdatePost(PostVM.Post);
+            return RedirectToPage("./EditPost", new { PostId = PostVM.Post.Id });
 		}
 		public IActionResult OnPostAddTags()
 		{

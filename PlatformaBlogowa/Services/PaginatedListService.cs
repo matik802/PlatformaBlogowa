@@ -16,12 +16,12 @@ namespace PlatformaBlogowa.Services
 			_postRepository = postRepository;
 		}
 
-		public async Task<PaginatedList<Post>> DoPaging(int? pageIndex, string? UserName = null)
+		public async Task<PaginatedList<Post>> DoPaging(int? pageIndex = 1, string? UserName = null)
 		{
 			return await _paginatedListRepository.DoPaging(pageIndex, UserName);
 		}
 
-		public async Task<ListPostWithExtrasVM> DoPagingVM(int? pageIndex, string? UserName = null)
+		public async Task<ListPostWithExtrasVM> DoPagingVM(int? pageIndex = 1, string? UserName = null)
 		{
 			var pagiantedList = await _paginatedListRepository.DoPaging(pageIndex, UserName);
 			ListPostWithExtrasVM PostsVMList = new ListPostWithExtrasVM();

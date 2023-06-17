@@ -19,21 +19,32 @@ namespace PlatformaBlogowa.Services.Repositories
 			_configuration = configuration;
 			_userService = userService;
 		}
-		public async Task<PaginatedList<Post>> DoPaging(int? pageIndex, string? UserName = null)
+		public async Task<PaginatedList<Post>> DoPaging(int? pageIndex = 1, string? UserName = null)
 		{
-			//var posts = _applicationDbContext.Posts;
-			//if (!string.IsNullOrEmpty(UserName))
+			if (!string.IsNullOrEmpty(UserName))
 			{
 				var user = _userService.GetUserByUserName(UserName);
 				var posts = _applicationDbContext.Posts.Where(u => u.UserId == user.Id);
-				//}
+			
 				IQueryable<Post> FormIQ = from s in posts
 										  select s;
 				FormIQ = FormIQ.OrderByDescending(s => s.Created);
 				var pageSize = _configuration.GetValue("PageSize", 4);
 				return await PaginatedList<Post>.CreateAsync(
 					FormIQ, pageIndex ?? 1, pageSize);
-			}
-		}
+            }
+            else
+            {
+                var user = _userService.GetUserByUserName(UserName);
+                var posts = _applicationDbContext.Posts;
+
+                IQueryable<Post> FormIQ = from s in posts
+                                          select s;
+                FormIQ = FormIQ.OrderByDescending(s => s.Created);
+                var pageSize = _configuration.GetValue("PageSize", 4);
+                return await PaginatedList<Post>.CreateAsync(
+                    FormIQ, pageIndex ?? 1, pageSize);
+            }
+        }
 	}
 }

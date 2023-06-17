@@ -30,8 +30,9 @@ namespace PlatformaBlogowa.Pages
             if (ModelState.ErrorCount == 1)
 			{  
                 _postService.AddTag(Tag);
+                return RedirectToPage("./AddTag", new { PostId = Post.Id });
             }
-            return RedirectToPage("./AddTag",new { PostId = Post.Id });
+			return Page();
 		}
 		public IActionResult OnPostAddPicture()
 		{

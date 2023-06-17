@@ -11,28 +11,28 @@
     }
     <form method="post">
         
-        @for (int i = 0; i < 10; i++)
+        @foreach(var postVM in Model.PostsVM.PostsList)
         {   
             <div id="post">
-                @if ((string)TempData["UserId"] == @Model.PostVM[i].Post.UserId)
+                @if ((string)TempData["UserId"] == postVM.Post.UserId)
                 {
-                    <a asp-page="./EditPost" asp-route-PostId="@Model.PostVM[i].Post.Id">Edit</a>
-                    <a asp-page="./DeletePost" asp-route-PostId="@Model.PostVM[i].Post.Id">Delete</a>
+                    <a asp-page="./EditPost" asp-route-PostId="@postVM.Post.Id">Edit</a>
+                    <a asp-page="./DeletePost" asp-route-PostId="@postVM.Post.Id">Delete</a>
                 }
-                <h2>@Model.PostVM[i].Post.Title</h2>
-                @foreach (var picture in Model.PostVM[i].Pictures)
+                <h2>@postVM.Post.Title</h2>
+                @foreach (var picture in postVM.Pictures)
                 {
                     <img src="data:image/jpg;base64,@picture.ImageData" width="120px" height="120px"/>
                 }
-                <p>@Model.PostVM[i].Post.Description</p>
+                <p>@postVM.Post.Description</p>
                 <p class="inline" style="font-size:80%;">Tags:</p>
-                @foreach (var tag in Model.PostVM[i].Tags)
+                @foreach (var tag in postVM.Tags)
                 {
                     <p class="inline"style="font-size:80%;">@tag.Name</p>
                 }
                 <br/>
-                <p style="font-size:50%;">@Model.PostVM[i].Post.Created</p>
-                <a asp-page="./Comments" asp-route-PostId="@Model.PostVM[i].Post.Id">Comments</a>
+                <p style="font-size:50%;">@postVM.Post.Created</p>
+                <a asp-page="./Comments" asp-route-PostId="@postVM.Post.Id">Comments</a>
             </div>
         }
     </form>
