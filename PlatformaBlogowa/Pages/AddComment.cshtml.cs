@@ -26,7 +26,6 @@ namespace PlatformaBlogowa.Pages
         {
 			Comment = new Comment();
 			Comment.PostId = PostId;
-			//Comment.Ip = HttpContext?.Connection.RemoteIpAddress?.ToString();
 		}
 		public IActionResult OnPostAddComment()
 		{
